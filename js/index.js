@@ -3,7 +3,7 @@ let slidebar = document.querySelector('#slidebar');
 let btn = document.querySelector('#slidebar .btn');
 let menu = document.querySelector('.menu');
 let flag = 1;
-// 当我们鼠标经过sliderbar就会让con这个盒子滑动到左侧
+// 侧边栏折叠效果
 btn.addEventListener('click', function () {
     if (flag == 1) {
         slidebar.style.width = "10px";

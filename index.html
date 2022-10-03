@@ -9,8 +9,60 @@
     <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
-    <h1>我的在线笔记本</h1>
-    <p>hello world！</p>
-    <p>这是一次测试</p>
+    <!-- 头部区域 start -->
+    <div class="header">
+        <div id="header-container">
+            <h1>我的笔记本</h1>
+        </div>
+        <div id="menubar" class="w">
+            <div class="dropdown">
+                <a href="#">文件</a>
+            </div>
+            <div class="dropdown">
+                <a href="#">编辑</a>
+            </div>
+            <div class="dropdown">
+                <a href="#">视图</a>
+            </div>
+            <div class="dropdown">
+                <a href="#">插入</a>
+            </div>
+            <div class="dropdown">
+                <a href="#">设置</a>
+            </div>
+            <div class="dropdown">
+                <a href="#">帮助</a>
+            </div>
+        </div>
+        <div id="maintoolbar" class="w">
+            <div class="btn-group">
+                <button class="btn">+</button>
+            </div>
+            <div class="btn-group">
+                <button class="btn">-</button>
+            </div>
+            <div class="btn-group">
+                <button class="btn">上移</button>
+            </div>
+            <div class="btn-group">
+                <button class="btn">下移</button>
+            </div>
+        </div>
+    </div>
+    <!-- 头部区域 end -->
+    <!-- 主要区域 start -->
+    <div id="main">
+        <!-- 左侧导航区域 start -->
+        <div id="left_navbar"></div>
+        <!-- 笔记内容区 start -->
+        <div id="content" class="w">
+            <div class="textarea" contenteditable="true"></div>
+        </div>
+        <!-- 笔记内容区 end -->
+        <!-- 右侧属性区 start -->
+        <div id="porperties"></div>
+        <!-- 右侧属性区 end -->
+    </div>
+    <!-- 主要区域 end -->
 </body>
 </html>

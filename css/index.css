@@ -1,0 +1,76 @@
+.w {
+    width: 1100px;
+    margin: 0 auto;
+}
+body {
+    height: 6000px;
+}
+.header {
+    width: 100%;
+    position: fixed;
+    height: 120px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e7e7e7; 
+}
+#header-container {
+    height: 45px;
+    line-height: 45px;
+    background-color: #ffffff;
+    border: 1px solid #e7e7e7;
+}
+#menubar {
+    height: 40px;
+    background-color: #f8f8f8;
+    border:1px solid #e7e7e7;
+}
+.dropdown {
+    float: left;
+}
+.dropdown a {
+    padding: 10px ;
+    font-size: 14px;
+    color: #565656;
+    line-height: 40px;
+}
+#maintoolbar {
+    margin-top: 5px;
+    height: 25px;
+    /* background-color: black; */
+}
+#maintoolbar .btn-group {
+    float: left;
+    margin-right: 5px;
+    height: 25px;
+}
+#maintoolbar .btn-group .btn {
+    padding-left: 5px;
+    padding-right: 5px;
+    line-height: 25px;
+    background-color: #ffffff;
+    border: 1px solid #e7e7e7;
+}
+#main {
+    height: 100%;
+    background-color: #eeeeee;
+    border-top: 1px solid #e7e7e7;
+}
+#content {
+    margin-top: 130px;
+    height: 1000px;
+    background-color: #ffffff;
+}
+#content .textarea {
+    float: right;
+    margin: 10px 10px 0 ;
+    width: 950px;
+    min-height: 25px;
+    line-height: 25px;
+    font-size: 15px;
+    resize: none;
+    outline: none;
+    background-color: #f7f7f7;
+    word-wrap: break-word;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border: 1px solid #e7e7e7;
+}

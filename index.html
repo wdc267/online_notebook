@@ -53,9 +53,24 @@
     <!-- 主要区域 start -->
     <div id="main">
         <!-- 左侧导航区域 start -->
-        <div id="left_navbar"></div>
+        <div id="slidebar">
+            <button class="btn">X</button>
+            <div class="menu">
+                <div class="menu-title">
+                    <h1>文件</h1>
+                </div>
+                <div class="menu-content">
+                    <p>text.txt</p>
+                </div>
+            </div>
+        </div>
         <!-- 笔记内容区 start -->
         <div id="content" class="w">
+            <!-- <button>Open Sidebar</button> -->
+            <div class="textarea" contenteditable="true"></div>
+            <div class="textarea" contenteditable="true"></div>
+            <div class="textarea" contenteditable="true"></div>
+            <div class="textarea" contenteditable="true"></div>
             <div class="textarea" contenteditable="true"></div>
         </div>
         <!-- 笔记内容区 end -->
@@ -64,5 +79,6 @@
         <!-- 右侧属性区 end -->
     </div>
     <!-- 主要区域 end -->
+    <script src="js/index.js"></script>
 </body>
 </html>

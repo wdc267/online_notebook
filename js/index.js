@@ -4,6 +4,8 @@ let btn = document.querySelector('#slidebar .btn');
 let menu = document.querySelector('.menu');
 let add = document.querySelector('#add');
 let del = document.querySelector('#del');
+let up = document.querySelector('#up');
+let down = document.querySelector('#down');
 let content = document.querySelector('#content');
 let cells = content.querySelectorAll('#content>div');
 let flag = true;
@@ -26,6 +28,45 @@ btn.addEventListener('click', function () {
 add.addEventListener('click', addCell);
 // 删除cell
 del.addEventListener('click', delCell);
+up.addEventListener('click', function () {
+    let i = findIndex();
+    let className = cells[i].className;
+    if (i >= 1) {
+        removeClass();
+        cells[i - 1].classList.add(className);
+        if (className == 'focusCell')
+            cells[i - 1].children[0].focus();   
+    }
+})
+down.addEventListener('click', function () {
+    let i = findIndex();
+    let className = cells[i].className;
+    if (i < cells.length - 1) {
+        removeClass();
+        cells[i + 1].classList.add(className);
+        if (className == 'focusCell')
+            cells[i + 1].children[0].focus();
+    }
+})
+//按下上下键切换cell并转移类，若处于focus状态则获得焦点
+document.addEventListener('keyup', function (e) {
+    let i = findIndex();
+    let className = cells[i].className;
+    if (e.key == 'ArrowUp' && i >= 1) {
+        removeClass();
+        cells[i - 1].classList.add(className);
+        if (className == 'focusCell')
+            cells[i - 1].children[0].focus();
+        // alert('shang');
+    }
+    else if (e.key == 'ArrowDown' && i < cells.length - 1) {
+        removeClass();
+        cells[i + 1].classList.add(className);
+        if (className == 'focusCell')
+            cells[i + 1].children[0].focus();
+        // alert('xia');
+    }
+})
 // 给第一个cell绑定addFocus事件
 cells[0].addEventListener('click', addCurrent);
 // 阻止事件冒泡
@@ -84,7 +125,6 @@ function addCurrent() {
     removeClass();
     this.classList.add('current');
 }
-
 // 移出包含当前textarea的div所包含的类
 function removeClass() {
     for (let i = 0; i < cells.length; i++) {

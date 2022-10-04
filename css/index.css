@@ -64,18 +64,12 @@ body {
     background-color: #ffffff;
 }
 #content .textarea {
-    float: right;
-    margin: 10px 10px 0 ;
     width: 950px;
-    min-height: 25px;
-    line-height: 25px;
+    margin: 15px 75px 0;
     font-size: 15px;
     resize: none;
     outline: none;
     background-color: #f7f7f7;
-    word-wrap: break-word;
-    overflow-x: hidden;
-    overflow-y: auto;
     border: 1px solid #e7e7e7;
 }
 #slidebar {
@@ -117,4 +111,10 @@ body {
 } */
 .clear {
     clear: both;
+}
+#content .current {
+    border-left: 5px solid skyblue;
+}
+#content .focusCell {
+    border-left: 5px solid orange;
 }

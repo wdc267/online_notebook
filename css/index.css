@@ -62,10 +62,19 @@ body {
 #content {
     height: 1000px;
     background-color: #ffffff;
+    padding-top: 10px;
+}
+#content div {
+    width: 950px;
+    margin: 0 auto;
+    padding: 8px;
+    padding-left: 20px;
+    border: 1px solid transparent;
+    border-left: 5px solid transparent ;
 }
 #content .textarea {
-    width: 950px;
-    margin: 15px 75px 0;
+    width: 900px;
+    margin: 0 auto;
     font-size: 15px;
     resize: none;
     outline: none;
@@ -113,8 +122,10 @@ body {
     clear: both;
 }
 #content .current {
+    border: 1px solid skyblue;
     border-left: 5px solid skyblue;
 }
 #content .focusCell {
+    border: 1px solid orange;
     border-left: 5px solid orange;
 }

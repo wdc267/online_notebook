@@ -8,17 +8,21 @@ let up = document.querySelector('#up');
 let down = document.querySelector('#down');
 let content = document.querySelector('#content');
 let cells = content.querySelectorAll('#content>div');
+let w = document.querySelectorAll('.w');
 let flag = true;
 // 侧边栏折叠效果
 btn.addEventListener('click', function () {
     if (flag == true) {
         slidebar.style.width = "10px";
+        content.style.width = "1150px";
         menu.style.display = "none";
         btn.innerHTML = "√";
         flag = false;
     }
     else if (flag == false) {
         slidebar.style.width = "150px";
+        content.style.width = "1000px";
+        // cells.style.width = "950px";
         menu.style.display = "block";
         btn.innerHTML = "X";
         flag = true;
@@ -113,7 +117,6 @@ function delCell() {
     }
     cells = content.querySelectorAll('#content>div');
 }
-
 // 添加focusCell类，并标记出来
 function addFocus(e) {
     removeClass();

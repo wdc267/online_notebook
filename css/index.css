@@ -1,9 +1,8 @@
 .w {
-    width: 1100px;
+    width: 1000px;
     margin: 0 auto;
 }
 body {
-    height: 6000px;
     background-color: #eeeeee;
 }
 .header {
@@ -38,7 +37,6 @@ body {
 #maintoolbar {
     margin-top: 5px;
     height: 25px;
-    /* background-color: black; */
 }
 #maintoolbar .btn-group {
     float: left;
@@ -53,29 +51,27 @@ body {
     border: 1px solid #e7e7e7;
 }
 #main {
+    position: relative;
     width: 100%;
-    height: 1000px;
     background-color: #eeeeee;
     border-top: 1px solid #e7e7e7;
     margin-top: 150px;
 }
 #content {
-    height: 1000px;
     background-color: #ffffff;
-    padding-top: 10px;
+    padding: 10px 0;
 }
 #content div {
-    width: 950px;
-    margin: 0 auto;
+    width: 90%;
+    margin:  auto;
     padding: 8px;
-    padding-left: 20px;
     border: 1px solid transparent;
     border-left: 5px solid transparent ;
 }
 #content .textarea {
-    width: 900px;
+    width: 100%;
     margin: 0 auto;
-    font-size: 15px;
+    font-size: 17px;
     resize: none;
     outline: none;
     background-color: #f7f7f7;
@@ -84,9 +80,10 @@ body {
 #slidebar {
     position: relative;
     float: left;
-    background-color: pink;  
     width: 150px;
     height: 500px;
+    font-size: 16px;
+    background-color: #ffffff;
 }
 #slidebar .btn {
     position: absolute;
@@ -106,18 +103,14 @@ body {
     width: 100%;
     height: 20px;
     line-height: 20px;
-    font-size: 14px;
+    font-size: 20px;
     color: #565656;
-    background-color: yellow;
+    background-color: #ffffff;
     text-align: center;
 }
 #slidebar .menu-content{
     margin-top: 20px;
 }
-/* #slidebar button {
-    width: 100px;
-    height: 100px;
-} */
 .clear {
     clear: both;
 }
@@ -128,4 +121,15 @@ body {
 #content .focusCell {
     border: 1px solid orange;
     border-left: 5px solid orange;
+}
+#porperties {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 200px;
+    font-size: 16px;
+    background-color: #ffffff;
+}
+#porperties h1 {
+    font-size: 20px;
 }

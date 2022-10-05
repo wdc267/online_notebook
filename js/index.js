@@ -134,17 +134,18 @@ function addCell() {
 }
 // 将选中的cell删除
 function delCell() {
+    let i = findIndex();
     if (cells.length > 1) {
-        let i = findIndex();
-        cell_por.children[0].innerHTML = "cell编号:" + (i - 1);
         content.removeChild(cells[i]);
         // 当前删除的是最顶部的给它下面的cell加上类
         if (i - 1 < 0) {
             cells[i + 1].classList.add('current');
+            cell_por.children[0].innerHTML = "cell编号:" + i;
         }
         // 不是最顶部的给它上面的cell加上类
         else {
             cells[i - 1].classList.add('current');
+            cell_por.children[0].innerHTML = "cell编号:" + (i - 1);
         }
     }
     cells = content.querySelectorAll('#content>div');

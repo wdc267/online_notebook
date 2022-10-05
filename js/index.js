@@ -87,6 +87,11 @@ cells[0].children[0].addEventListener('click', function (e) {
     e.stopPropagation();
 })
 cells[0].children[0].addEventListener('focus', addFocus);
+// textarea自适应高度
+cells[0].children[0].addEventListener('input', function (e) {
+    cells[0].children[0].style.height = '42px';
+    cells[0].children[0].style.height = e.target.scrollHeight + 'px';
+})
 // 在选中的cell 前面插入新的cell
 function addBefore() {
     let i = findIndex();
@@ -101,10 +106,12 @@ function addBefore() {
     content.insertBefore(cell, cells[i]);
     cell.append(textarea);
     // 阻止textarea聚焦时事件冒泡
-    textarea.addEventListener('click', function (e) {
-        e.stopPropagation();
+    textarea.addEventListener('input', function (e) {
+        textarea.style.height = '42px';
+        textarea.style.height = e.target.scrollHeight + 'px';
     })
     textarea.addEventListener('focus', addFocus);
+    textarea.addEventListener('input', autoHeight);
     cell.addEventListener('click', addCurrent);
     cells = content.querySelectorAll('#content>div');
 }
@@ -127,6 +134,10 @@ function addCell() {
     // 阻止textarea聚焦时事件冒泡
     textarea.addEventListener('click',function (e) {
         e.stopPropagation();
+    })
+    textarea.addEventListener('input', function (e) {
+        textarea.style.height = '42px';
+        textarea.style.height = e.target.scrollHeight + 'px';
     })
     textarea.addEventListener('focus', addFocus);
     cell.addEventListener('click', addCurrent);

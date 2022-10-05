@@ -70,12 +70,15 @@ body {
 }
 #content .textarea {
     width: 100%;
+    min-height: 30px;
     margin: 0 auto;
+    padding: 0;
     font-size: 17px;
     resize: none;
     outline: none;
     background-color: #f7f7f7;
     border: 1px solid #e7e7e7;
+    overflow-y: hidden;
 }
 #slidebar {
     position: relative;

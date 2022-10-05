@@ -9,6 +9,9 @@ let down = document.querySelector('#down');
 let content = document.querySelector('#content');
 let cells = content.querySelectorAll('#content>div');
 let w = document.querySelectorAll('.w');
+let porperties = document.querySelector('#porperties');
+let cell_por = porperties.children[3];
+console.log(cell_por.children[0]);
 let flag = true;
 // 侧边栏折叠效果
 btn.addEventListener('click', function () {
@@ -36,6 +39,7 @@ up.addEventListener('click', function () {
     let i = findIndex();
     let className = cells[i].className;
     if (i >= 1) {
+        cell_por.children[0].innerHTML = "cell编号:" + (i - 1);
         removeClass();
         cells[i - 1].classList.add(className);
         if (className == 'focusCell')
@@ -46,6 +50,7 @@ down.addEventListener('click', function () {
     let i = findIndex();
     let className = cells[i].className;
     if (i < cells.length - 1) {
+        cell_por.children[0].innerHTML = "cell编号:" + (i + 1);
         removeClass();
         cells[i + 1].classList.add(className);
         if (className == 'focusCell')
@@ -59,6 +64,7 @@ document.addEventListener('keyup', function (e) {
     if (e.key == 'ArrowUp' && i >= 1) {
         removeClass();
         cells[i - 1].classList.add(className);
+        cell_por.children[0].innerHTML = "cell编号:" + (i - 1);
         if (className == 'focusCell')
             cells[i - 1].children[0].focus();
         // alert('shang');
@@ -66,6 +72,7 @@ document.addEventListener('keyup', function (e) {
     else if (e.key == 'ArrowDown' && i < cells.length - 1) {
         removeClass();
         cells[i + 1].classList.add(className);
+        cell_por.children[0].innerHTML = "cell编号:" + (i + 1);
         if (className == 'focusCell')
             cells[i + 1].children[0].focus();
         // alert('xia');
@@ -78,10 +85,11 @@ cells[0].children[0].addEventListener('click', function (e) {
     e.stopPropagation();
 })
 cells[0].children[0].addEventListener('focus', addFocus);
-// 在选中的cell后面插入新的cell
+// 在选中的cell 前面插入新的cell
 function addCell() {
     let i = findIndex();
     // 移除当前所有包含cells的div的类名
+    cell_por.children[0].innerHTML = "cell编号:" + (i + 1);
     removeClass();
     let cell = document.createElement('div');
     let textarea = document.createElement('textarea');
@@ -93,7 +101,31 @@ function addCell() {
     else
         content.insertBefore(cell, cells[i].nextSibling);
     cell.append(textarea);
-    // 阻止事件冒泡
+    // 阻止textarea聚焦时事件冒泡
+    textarea.addEventListener('click', function (e) {
+        e.stopPropagation();
+    })
+    textarea.addEventListener('focus', addFocus);
+    cell.addEventListener('click', addCurrent);
+    cells = content.querySelectorAll('#content>div');
+}
+// 在选中的cell后面插入新的cell
+function addCell() {
+    let i = findIndex();
+    // 移除当前所有包含cells的div的类名
+    cell_por.children[0].innerHTML = "cell编号:" + (i+1);
+    removeClass();
+    let cell = document.createElement('div');
+    let textarea = document.createElement('textarea');
+    // 给新添加的cell的盒子添加current类
+    cell.classList.add('current');
+    textarea.classList.add('textarea');
+    if (content.lastChild == cells[i])
+        content.appendChild(cell);
+    else
+        content.insertBefore(cell, cells[i].nextSibling);
+    cell.append(textarea);
+    // 阻止textarea聚焦时事件冒泡
     textarea.addEventListener('click',function (e) {
         e.stopPropagation();
     })
@@ -105,6 +137,7 @@ function addCell() {
 function delCell() {
     if (cells.length > 1) {
         let i = findIndex();
+        cell_por.children[0].innerHTML = "cell编号:" + (i - 1);
         content.removeChild(cells[i]);
         // 当前删除的是最顶部的给它下面的cell加上类
         if (i - 1 < 0) {
@@ -121,12 +154,16 @@ function delCell() {
 function addFocus(e) {
     removeClass();
     this.parentNode.classList.add('focusCell');
+    let i = findIndex();
+    cell_por.children[0].innerHTML = "cell编号:" + i;
     e.stopPropagation();
 }
 // 添加current类，并标记出来
 function addCurrent() {
     removeClass();
     this.classList.add('current');
+    let i = findIndex();
+    cell_por.children[0].innerHTML = "cell编号:" + i;
 }
 // 移出包含当前textarea的div所包含的类
 function removeClass() {

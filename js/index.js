@@ -14,6 +14,8 @@ let porperties = document.querySelector('#porperties');
 let cell_por = porperties.children[3];
 console.log(cell_por.children[0]);
 let flag = true;
+let change = false;
+let clone_cell;
 // 侧边栏折叠效果
 btn.addEventListener('click', function () {
     if (flag == true) {
@@ -32,6 +34,7 @@ btn.addEventListener('click', function () {
         flag = true;
     }
 })
+// 在当前cell前面添加cell
 add_bef.addEventListener('click', addBefore);
 // 添加cell
 add.addEventListener('click', addCell);
@@ -79,9 +82,45 @@ document.addEventListener('keyup', function (e) {
             cells[i + 1].children[0].focus();
         // alert('xia');
     }
+    else if (e.key == 'm' && className == 'current' && change == false) {
+        let text = cells[i].children[0];
+        clone_cell = cells[i].cloneNode(true);
+        if (text.value == '') {
+            alert('您没有输入内容');
+            clone_cell = '';
+            return false;
+        } else {
+            cells[i].innerHTML = marked.parse(text.value);
+            change = true;
+        }
+    }
 })
+function changeCell() {
+    let i = findIndex();
+    if (change == true) {
+        // 克隆节点不会绑定监听事件
+        clone_cell.addEventListener('click', addCurrent);
+        clone_cell.addEventListener('dblclick', changeCell);
+        // 阻止事件冒泡
+        clone_cell.children[0].addEventListener('click', function (e) {
+            e.stopPropagation();
+        })
+        clone_cell.children[0].addEventListener('focus', addFocus);
+        // textarea自适应高度
+        clone_cell.children[0].addEventListener('input', function (e) {
+            clone_cell.children[0].style.height = '42px';
+            clone_cell.children[0].style.height = e.target.scrollHeight + 'px';
+        })
+        content.insertBefore(clone_cell, cells[i]);
+        content.removeChild(cells[i]);
+        console.log(clone_cell);
+        change = false;
+        cells = content.querySelectorAll('#content>div');
+    }
+}
 // 给第一个cell绑定addFocus事件
 cells[0].addEventListener('click', addCurrent);
+cells[0].addEventListener('dblclick', changeCell);
 // 阻止事件冒泡
 cells[0].children[0].addEventListener('click', function (e) {
     e.stopPropagation();
@@ -111,8 +150,8 @@ function addBefore() {
         textarea.style.height = e.target.scrollHeight + 'px';
     })
     textarea.addEventListener('focus', addFocus);
-    textarea.addEventListener('input', autoHeight);
     cell.addEventListener('click', addCurrent);
+    cell.addEventListener('dblclick', changeCell);
     cells = content.querySelectorAll('#content>div');
 }
 // 在选中的cell后面插入新的cell
@@ -141,6 +180,7 @@ function addCell() {
     })
     textarea.addEventListener('focus', addFocus);
     cell.addEventListener('click', addCurrent);
+    cell.addEventListener('dblclick', changeCell);
     cells = content.querySelectorAll('#content>div');
 }
 // 将选中的cell删除

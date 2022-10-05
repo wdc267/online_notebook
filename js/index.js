@@ -2,6 +2,7 @@
 let slidebar = document.querySelector('#slidebar');
 let btn = document.querySelector('#slidebar .btn');
 let menu = document.querySelector('.menu');
+let add_bef = document.querySelector('#addBefore');
 let add = document.querySelector('#add');
 let del = document.querySelector('#del');
 let up = document.querySelector('#up');
@@ -31,6 +32,7 @@ btn.addEventListener('click', function () {
         flag = true;
     }
 })
+add_bef.addEventListener('click', addBefore);
 // 添加cell
 add.addEventListener('click', addCell);
 // 删除cell
@@ -86,20 +88,17 @@ cells[0].children[0].addEventListener('click', function (e) {
 })
 cells[0].children[0].addEventListener('focus', addFocus);
 // 在选中的cell 前面插入新的cell
-function addCell() {
+function addBefore() {
     let i = findIndex();
     // 移除当前所有包含cells的div的类名
-    cell_por.children[0].innerHTML = "cell编号:" + (i + 1);
+    cell_por.children[0].innerHTML = "cell编号:" + i;
     removeClass();
     let cell = document.createElement('div');
     let textarea = document.createElement('textarea');
     // 给新添加的cell的盒子添加current类
     cell.classList.add('current');
     textarea.classList.add('textarea');
-    if (content.lastChild == cells[i])
-        content.appendChild(cell);
-    else
-        content.insertBefore(cell, cells[i].nextSibling);
+    content.insertBefore(cell, cells[i]);
     cell.append(textarea);
     // 阻止textarea聚焦时事件冒泡
     textarea.addEventListener('click', function (e) {

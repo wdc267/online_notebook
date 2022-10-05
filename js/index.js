@@ -14,7 +14,7 @@ let flag = true;
 btn.addEventListener('click', function () {
     if (flag == true) {
         slidebar.style.width = "10px";
-        content.style.width = "1150px";
+        content.style.width = "1100px";
         menu.style.display = "none";
         btn.innerHTML = "√";
         flag = false;

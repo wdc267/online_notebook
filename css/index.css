@@ -62,9 +62,9 @@ body {
     padding: 10px 0;
 }
 #content div {
-    width: 90%;
+    width: 95%;
     margin:  auto;
-    padding: 8px;
+    padding: 5px 25px;
     border: 1px solid transparent;
     border-left: 5px solid transparent ;
 }

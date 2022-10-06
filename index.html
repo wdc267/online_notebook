@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>在线笔记本</title>
+    <link rel="stylesheet" href="assets/iconfont.css">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/index.css">
 </head>
@@ -35,20 +36,20 @@
             </div>
         </div>
         <div id="maintoolbar" class="w">
-            <div class="btn-group">
-                <button class="btn" id="add">±</button>
+            <div class="btn-group" id="add">
+                <button class="btn iconfont">&#xe890;</button>
             </div>
-            <div class="btn-group">
-                <button class="btn" id="addBefore">干</button>
+            <div class="btn-group" id="addBefore">
+                <button class="btn iconfont">&#xe613;</button>
             </div>
             <div class="btn-group" id="del">
-                <button class="btn">-</button>
+                <button class="btn iconfont">&#xe60e;</button>
             </div>
-            <div class="btn-group">
-                <button class="btn" id="up">上移</button>
+            <div class="btn-group" id="up">
+                <button class="btn iconfont">&#xeb0b;</button>
             </div>
             <div class="btn-group" id="down">
-                <button class="btn">下移</button>
+                <button class="btn iconfont">&#xeb0a;</button>
             </div>
         </div>
     </div>
@@ -57,7 +58,7 @@
     <div id="main">
         <!-- 左侧导航区域 start -->
         <div id="slidebar">
-            <button class="btn">X</button>
+            <button class="btn iconfont">&#xe64a;</button>
             <div class="menu">
                 <div class="menu-title">
                     <h1>文件</h1>
@@ -69,7 +70,8 @@
         </div>
         <!-- 笔记内容区 start -->
         <div id="content" class="w">
-            <div class="current"><textarea class="textarea"></textarea></div>
+            <div class="current"><textarea class="textarea" placeholder="默认为编辑模式，文本框聚焦时为橙色状态，单击当前cell不包括文本区切换为蓝色选中状态。若当前cell处于蓝色选中状态，按键盘上的m键可以切换为预览模式。重新双击cell可以切换回编辑模式。
+                按键盘上下键可以切换cell。"></textarea></div>
         </div>
         <!-- 笔记内容区 end -->
         <!-- 右侧属性区 start -->

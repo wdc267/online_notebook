@@ -11,8 +11,8 @@ let content = document.querySelector('#content');
 let cells = content.querySelectorAll('#content>div');
 let w = document.querySelectorAll('.w');
 let porperties = document.querySelector('#porperties');
+let test = document.querySelector('#test');
 let cell_por = porperties.children[3];
-console.log(cell_por.children[0]);
 let flag = true;
 let change = false;
 let clone_cell;
@@ -22,7 +22,7 @@ btn.addEventListener('click', function () {
         slidebar.style.width = "10px";
         content.style.width = "1100px";
         menu.style.display = "none";
-        btn.innerHTML = "√";
+        btn.innerHTML = "&#xe649;";
         flag = false;
     }
     else if (flag == false) {
@@ -30,7 +30,7 @@ btn.addEventListener('click', function () {
         content.style.width = "1000px";
         // cells.style.width = "950px";
         menu.style.display = "block";
-        btn.innerHTML = "X";
+        btn.innerHTML = "&#xe64a;";
         flag = true;
     }
 })
@@ -128,7 +128,7 @@ cells[0].children[0].addEventListener('click', function (e) {
 cells[0].children[0].addEventListener('focus', addFocus);
 // textarea自适应高度
 cells[0].children[0].addEventListener('input', function (e) {
-    cells[0].children[0].style.height = '42px';
+    cells[0].children[0].style.height = '51px';
     cells[0].children[0].style.height = e.target.scrollHeight + 'px';
 })
 // 在选中的cell 前面插入新的cell
@@ -145,8 +145,11 @@ function addBefore() {
     content.insertBefore(cell, cells[i]);
     cell.append(textarea);
     // 阻止textarea聚焦时事件冒泡
+    textarea.addEventListener('click', function (e) {
+        e.stopPropagation();
+    })
     textarea.addEventListener('input', function (e) {
-        textarea.style.height = '42px';
+        textarea.style.height = '51px';
         textarea.style.height = e.target.scrollHeight + 'px';
     })
     textarea.addEventListener('focus', addFocus);
@@ -175,7 +178,7 @@ function addCell() {
         e.stopPropagation();
     })
     textarea.addEventListener('input', function (e) {
-        textarea.style.height = '42px';
+        textarea.style.height = '51px';
         textarea.style.height = e.target.scrollHeight + 'px';
     })
     textarea.addEventListener('focus', addFocus);

@@ -11,7 +11,6 @@ let content = document.querySelector('#content');
 let cells = content.querySelectorAll('#content>div');
 let w = document.querySelectorAll('.w');
 let porperties = document.querySelector('#porperties');
-let test = document.querySelector('#test');
 let cell_por = porperties.children[3];
 let flag = true;
 let change = false;

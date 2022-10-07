@@ -69,6 +69,9 @@ body {
     width: 95%;
     margin:  auto;
     padding: 5px 25px;
+    font-size: 20px;
+    color: black;
+    list-style: disc;
     border: 1px solid transparent;
     border-left: 5px solid transparent ;
 }
@@ -139,4 +142,7 @@ body {
 }
 #porperties h1 {
     font-size: 20px;
+}
+#porperties li {
+    list-style: none;
 }

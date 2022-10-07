@@ -27,7 +27,6 @@ btn.addEventListener('click', function () {
     else if (flag == false) {
         slidebar.style.width = "150px";
         content.style.width = "1000px";
-        // cells.style.width = "950px";
         menu.style.display = "block";
         btn.innerHTML = "&#xe64a;";
         flag = true;

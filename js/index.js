@@ -13,7 +13,6 @@ let w = document.querySelectorAll('.w');
 let porperties = document.querySelector('#porperties');
 let cell_por = porperties.children[3];
 let flag = true;
-let clone_cell;
 // 侧边栏折叠效果
 btn.addEventListener('click', function () {
     if (flag == true) {
@@ -69,7 +68,6 @@ document.addEventListener('keyup', function (e) {
         cell_por.children[0].innerHTML = "cell编号:" + (i - 1);
         if (className == 'focusCell')
             cells[i - 1].children[0].focus();
-        // alert('shang');
     }
     else if (e.key == 'ArrowDown' && i < cells.length - 1) {
         removeClass();
@@ -77,17 +75,17 @@ document.addEventListener('keyup', function (e) {
         cell_por.children[0].innerHTML = "cell编号:" + (i + 1);
         if (className == 'focusCell')
             cells[i + 1].children[0].focus();
-        // alert('xia');
     }
     else if (e.key == 'm' && className == 'current' && cells[i].getAttribute('change') == 'false') {
         let text = cells[i].children[0];
-        clone_cell = cells[i].cloneNode(true);
+        let box = document.createElement('div');
         if (text.value == '') {
             alert('您没有输入内容');
-            clone_cell = '';
             return false;
         } else {
-            cells[i].innerHTML = marked.parse(text.value);
+            box.innerHTML = marked.parse(text.value);
+            cells[i].append(box);
+            text.style.display = 'none';
             cells[i].setAttribute('change', 'true');
         }
     }
@@ -185,11 +183,11 @@ function findIndex() {
 function changeCell() {
     let i = findIndex();
     if (cells[i].getAttribute('change') == 'true') {
-        content.insertBefore(clone_cell, cells[i]);
-        content.removeChild(cells[i]);
-        cells = content.querySelectorAll('#content>div');
-        // 克隆节点不会自动绑定监听事件,需要再次初始化
-        cellInit(i);
+        let box = cells[i].querySelector('div');
+        let text = cells[i].children[0];
+        cells[i].removeChild(box);
+        text.style.display = 'block';
+        cells[i].setAttribute('change', false);
     }
 }
 // 初始化绑定事件设置属性

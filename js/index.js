@@ -13,7 +13,6 @@ let w = document.querySelectorAll('.w');
 let porperties = document.querySelector('#porperties');
 let cell_por = porperties.children[3];
 let flag = true;
-let change = false;
 let clone_cell;
 // 侧边栏折叠效果
 btn.addEventListener('click', function () {
@@ -60,7 +59,7 @@ down.addEventListener('click', function () {
             cells[i + 1].children[0].focus();
     }
 })
-//按下上下键切换cell并转移类，若处于focus状态则获得焦点
+// 键盘事件
 document.addEventListener('keyup', function (e) {
     let i = findIndex();
     let className = cells[i].className;
@@ -80,7 +79,7 @@ document.addEventListener('keyup', function (e) {
             cells[i + 1].children[0].focus();
         // alert('xia');
     }
-    else if (e.key == 'm' && className == 'current' && change == false) {
+    else if (e.key == 'm' && className == 'current' && cells[i].getAttribute('change') == 'false') {
         let text = cells[i].children[0];
         clone_cell = cells[i].cloneNode(true);
         if (text.value == '') {
@@ -89,46 +88,12 @@ document.addEventListener('keyup', function (e) {
             return false;
         } else {
             cells[i].innerHTML = marked.parse(text.value);
-            change = true;
+            cells[i].setAttribute('change', 'true');
         }
     }
 })
-function changeCell() {
-    let i = findIndex();
-    if (change == true) {
-        // 克隆节点不会绑定监听事件
-        clone_cell.addEventListener('click', addCurrent);
-        clone_cell.addEventListener('dblclick', changeCell);
-        // 阻止事件冒泡
-        clone_cell.children[0].addEventListener('click', function (e) {
-            e.stopPropagation();
-        })
-        clone_cell.children[0].addEventListener('focus', addFocus);
-        // textarea自适应高度
-        clone_cell.children[0].addEventListener('input', function (e) {
-            clone_cell.children[0].style.height = '42px';
-            clone_cell.children[0].style.height = e.target.scrollHeight + 'px';
-        })
-        content.insertBefore(clone_cell, cells[i]);
-        content.removeChild(cells[i]);
-        console.log(clone_cell);
-        change = false;
-        cells = content.querySelectorAll('#content>div');
-    }
-}
-// 给第一个cell绑定addFocus事件
-cells[0].addEventListener('click', addCurrent);
-cells[0].addEventListener('dblclick', changeCell);
-// 阻止事件冒泡
-cells[0].children[0].addEventListener('click', function (e) {
-    e.stopPropagation();
-})
-cells[0].children[0].addEventListener('focus', addFocus);
-// textarea自适应高度
-cells[0].children[0].addEventListener('input', function (e) {
-    cells[0].children[0].style.height = '51px';
-    cells[0].children[0].style.height = e.target.scrollHeight + 'px';
-})
+// 为cells[0]添加绑定事件,设置属性
+cellInit(0);
 // 在选中的cell 前面插入新的cell
 function addBefore() {
     let i = findIndex();
@@ -142,18 +107,9 @@ function addBefore() {
     textarea.classList.add('textarea');
     content.insertBefore(cell, cells[i]);
     cell.append(textarea);
-    // 阻止textarea聚焦时事件冒泡
-    textarea.addEventListener('click', function (e) {
-        e.stopPropagation();
-    })
-    textarea.addEventListener('input', function (e) {
-        textarea.style.height = '51px';
-        textarea.style.height = e.target.scrollHeight + 'px';
-    })
-    textarea.addEventListener('focus', addFocus);
-    cell.addEventListener('click', addCurrent);
-    cell.addEventListener('dblclick', changeCell);
     cells = content.querySelectorAll('#content>div');
+    // 为cell添加绑定事件,设置属性
+    cellInit(i);
 }
 // 在选中的cell后面插入新的cell
 function addCell() {
@@ -171,18 +127,9 @@ function addCell() {
     else
         content.insertBefore(cell, cells[i].nextSibling);
     cell.append(textarea);
-    // 阻止textarea聚焦时事件冒泡
-    textarea.addEventListener('click',function (e) {
-        e.stopPropagation();
-    })
-    textarea.addEventListener('input', function (e) {
-        textarea.style.height = '51px';
-        textarea.style.height = e.target.scrollHeight + 'px';
-    })
-    textarea.addEventListener('focus', addFocus);
-    cell.addEventListener('click', addCurrent);
-    cell.addEventListener('dblclick', changeCell);
     cells = content.querySelectorAll('#content>div');
+    // 为cell添加绑定事件,设置属性
+    cellInit(i + 1);
 }
 // 将选中的cell删除
 function delCell() {
@@ -233,4 +180,32 @@ function findIndex() {
         }
     }
     return a;
+}
+// 从html预览模式转为编辑模式
+function changeCell() {
+    let i = findIndex();
+    if (cells[i].getAttribute('change') == 'true') {
+        content.insertBefore(clone_cell, cells[i]);
+        content.removeChild(cells[i]);
+        cells = content.querySelectorAll('#content>div');
+        // 克隆节点不会自动绑定监听事件,需要再次初始化
+        cellInit(i);
+    }
+}
+// 初始化绑定事件设置属性
+function cellInit(i) {
+    // 给第一个cell绑定addFocus事件
+    cells[i].addEventListener('click', addCurrent);
+    cells[i].addEventListener('dblclick', changeCell);
+    cells[i].setAttribute('change', 'false');
+    // 阻止事件冒泡
+    cells[i].children[0].addEventListener('click', function (e) {
+        e.stopPropagation();
+    })
+    cells[i].children[0].addEventListener('focus', addFocus);
+    // textarea自适应高度
+    cells[i].children[0].addEventListener('input', function (e) {
+        cells[i].children[0].style.height = '51px';
+        cells[i].children[0].style.height = e.target.scrollHeight + 'px';
+    })
 }

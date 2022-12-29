@@ -1,4 +1,4 @@
-# online_notebook
+# online_notebook_test
 this is an online notebook.
 这是本人的一次课程作业，主要用于练习原生js,许多功能并不完善，存在许多不足之处，欢迎大家共同交流，如需参考代码，希望能够得到本人的允许。
 ## 当前功能
